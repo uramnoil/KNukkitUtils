@@ -9,7 +9,7 @@ import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
-class ServiceDelegate<T>(val clazz: Class<T>) : ReadOnlyProperty<Any?, RegisteredServiceProvider<T>> {
+class ServiceDelegate<T>(private val clazz: Class<T>) : ReadOnlyProperty<Any?, RegisteredServiceProvider<T>> {
     lateinit var service: RegisteredServiceProvider<T>
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): RegisteredServiceProvider<T> {
