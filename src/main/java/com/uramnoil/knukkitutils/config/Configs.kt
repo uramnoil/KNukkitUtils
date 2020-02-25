@@ -4,7 +4,6 @@ import cn.nukkit.utils.Config
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-@Suppress("UNCHECKED_CAST")
 class StringProperty(private val index: String, private val default: String) : ReadWriteProperty<Config, String> {
 	override fun getValue(thisRef: Config, property: KProperty<*>): String {
 		return thisRef.getString(index, default)
@@ -45,7 +44,14 @@ class BooleanProperty(private val index: String, private val default: Boolean = 
 	}
 }
 
+@Suppress("unused")
 fun Config.string(index: String, default: String = "") = StringProperty(index, default)
+
+@Suppress("unused")
 fun Config.boolean(index: String, default: Boolean = false) = BooleanProperty(index, default)
+
+@Suppress("unused")
 fun Config.int(index: String, default: Int = 0) = IntProperty(index, default)
+
+@Suppress("unused")
 fun Config.double(index: String, default: Double = 0.0) = DoubleProperty(index, default)

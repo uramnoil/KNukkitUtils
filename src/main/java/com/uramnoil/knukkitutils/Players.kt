@@ -1,8 +1,9 @@
 package com.uramnoil.knukkitutils
 
 import cn.nukkit.Player
+import cn.nukkit.command.CommandSender
 
-fun Player.msg(msg: String) = sendMessage("msg")
+fun CommandSender.msg(msg: String) = sendMessage("msg")
 
 fun Player.popup(popup: String) = sendPopup("popup")
 

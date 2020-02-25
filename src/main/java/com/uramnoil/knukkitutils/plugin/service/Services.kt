@@ -1,14 +1,32 @@
 package com.uramnoil.knukkitutils.plugin.service
 
+import cn.nukkit.Server
 import cn.nukkit.plugin.Plugin
+import cn.nukkit.plugin.service.RegisteredServiceProvider
 import cn.nukkit.plugin.service.ServiceManager
 import cn.nukkit.plugin.service.ServicePriority
+import kotlin.properties.ReadOnlyProperty
+import kotlin.reflect.KClass
+import kotlin.reflect.KProperty
+
+class ServiceDelegate<T>(val clazz: Class<T>) : ReadOnlyProperty<Any?, RegisteredServiceProvider<T>> {
+    lateinit var service: RegisteredServiceProvider<T>
+
+    override fun getValue(thisRef: Any?, property: KProperty<*>): RegisteredServiceProvider<T> {
+        if (!::service.isInitialized) {
+            service = Server.getInstance().serviceManager.getProvider(clazz)
+        }
+        return service
+    }
+}
 
 inline fun <reified T> ServiceManager.register(provider: T, plugin: Plugin, priority: ServicePriority) = register(T::class.java, provider, plugin, priority)
 
 inline fun <reified T> ServiceManager.cancel(provider: T) = cancel(T::class.java, provider)
 
 inline fun <reified T> ServiceManager.getProvider() = getProvider(T::class.java)
+
+inline fun <reified T> service() = ServiceDelegate(T::class.java)
 
 inline fun <reified T> ServiceManager.getRegistrations() = getRegistrations(T::class.java)
 
