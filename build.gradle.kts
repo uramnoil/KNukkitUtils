@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.uramnoil"
-version = "1.3.61"
+version = "0.1.0"
 
 repositories {
     jcenter()
