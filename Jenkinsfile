@@ -1,9 +1,8 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout') {
+        stage('Add Permission') {
             steps {
-                checkout scm
                 sh 'chmod +x gradlew'
             }
         }
