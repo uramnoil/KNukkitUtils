@@ -1,4 +1,5 @@
 pipeline {
+    agent any
     stages {
         stage('Checkout') {
             checkout scm
@@ -8,6 +9,11 @@ pipeline {
             steps {
                 sh './gradlew publish'
             }
+        }
+    }
+    post {
+        success {
+            cleanWs()
         }
     }
 }
