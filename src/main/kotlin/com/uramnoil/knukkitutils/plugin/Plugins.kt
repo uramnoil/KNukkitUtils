@@ -1,17 +1,11 @@
 package com.uramnoil.knukkitutils.plugin
 
-import cn.nukkit.Server
-import cn.nukkit.command.Command
 import cn.nukkit.command.CommandSender
 import cn.nukkit.event.Event
-import cn.nukkit.event.EventHandler
 import cn.nukkit.event.EventPriority
 import cn.nukkit.event.Listener
-import cn.nukkit.event.player.PlayerJoinEvent
 import cn.nukkit.plugin.Plugin
-import cn.nukkit.plugin.PluginBase
 import cn.nukkit.plugin.PluginManager
-import com.uramnoil.knukkitutils.msg
 
 @Suppress("unused")
 inline fun <reified T : Plugin>PluginManager.getPlugin(): Plugin? = plugins.values.filterIsInstance<T>().firstOrNull()
