@@ -9,7 +9,7 @@ pipeline {
 
         stage('Publish') {
             steps {
-                sh './gradlew --info publish'
+                sh './gradlew --scan publish'
             }
         }
     }
