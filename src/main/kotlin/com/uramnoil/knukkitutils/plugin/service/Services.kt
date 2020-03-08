@@ -8,7 +8,7 @@ import cn.nukkit.plugin.service.ServicePriority
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
-class ServiceDelegate<T>(private val clazz: Class<T>) : ReadOnlyProperty<Any?, RegisteredServiceProvider<T>> {
+class ProviderDelegate<T>(private val clazz: Class<T>) : ReadOnlyProperty<Any?, RegisteredServiceProvider<T>> {
     lateinit var provider: RegisteredServiceProvider<T>
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): RegisteredServiceProvider<T> {
@@ -19,7 +19,14 @@ class ServiceDelegate<T>(private val clazz: Class<T>) : ReadOnlyProperty<Any?, R
     }
 }
 
-inline fun <reified T> ServiceManager.register(provider: T, plugin: Plugin, priority: ServicePriority) = register(T::class.java, provider, plugin, priority)
+class ServiceDelegate<T>(clazz: Class<T>) : ReadOnlyProperty<Any?, T> {
+    private val service: T = Server.getInstance().serviceManager.getProvider(clazz).provider
+
+    override fun getValue(thisRef: Any?, property: KProperty<*>) = service
+}
+
+inline fun <reified T> ServiceManager.register(provider: T, plugin: Plugin, priority: ServicePriority) =
+    register(T::class.java, provider, plugin, priority)
 
 inline fun <reified T> ServiceManager.cancel(provider: T) = cancel(T::class.java, provider)
 
