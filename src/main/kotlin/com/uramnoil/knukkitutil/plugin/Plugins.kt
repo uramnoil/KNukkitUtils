@@ -1,4 +1,4 @@
-package com.uramnoil.kotlib.plugin
+package com.uramnoil.knukkitutil.plugin
 
 import cn.nukkit.command.CommandSender
 import cn.nukkit.event.Event

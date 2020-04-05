@@ -1,4 +1,4 @@
-package com.uramnoil.kotlib.item
+package com.uramnoil.knukkitutil.item
 
 import cn.nukkit.item.Item
 

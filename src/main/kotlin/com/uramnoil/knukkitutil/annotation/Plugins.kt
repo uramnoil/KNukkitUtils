@@ -1,4 +1,4 @@
-package com.uramnoil.kotlib.annotation
+package com.uramnoil.knukkitutil.annotation
 
 import javax.annotation.processing.AbstractProcessor
 import javax.annotation.processing.RoundEnvironment
@@ -13,8 +13,6 @@ class PluginAnnotationProcessor : AbstractProcessor() {
 	}
 
 	override fun process(annotations: MutableSet<out TypeElement>, roundEnv: RoundEnvironment): Boolean {
-		roundEnv.getElementsAnnotatedWith(PluginAnnotation::class.java).forEach {
-
-		}
+		TODO("Not yet implemented")
 	}
 }

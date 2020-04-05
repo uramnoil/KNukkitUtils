@@ -1,4 +1,4 @@
-package com.uramnoil.kotlib.config
+package com.uramnoil.knukkitutil.config
 
 import cn.nukkit.utils.Config
 import kotlin.properties.ReadWriteProperty

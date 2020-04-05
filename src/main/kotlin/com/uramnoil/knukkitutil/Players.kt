@@ -1,4 +1,4 @@
-package com.uramnoil.kotlib
+package com.uramnoil.knukkitutil
 
 import cn.nukkit.Player
 import cn.nukkit.command.CommandSender

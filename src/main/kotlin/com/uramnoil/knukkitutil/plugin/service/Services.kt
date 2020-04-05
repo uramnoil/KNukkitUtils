@@ -1,4 +1,4 @@
-package com.uramnoil.kotlib.plugin.service
+package com.uramnoil.knukkitutil.plugin.service
 
 import cn.nukkit.Server
 import cn.nukkit.plugin.Plugin

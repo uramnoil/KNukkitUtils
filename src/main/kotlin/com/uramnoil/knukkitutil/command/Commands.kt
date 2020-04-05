@@ -1,9 +1,9 @@
-package com.uramnoil.kotlib.command
+package com.uramnoil.knukkitutil.command
 
 import cn.nukkit.Server
 import cn.nukkit.command.Command
 import cn.nukkit.command.CommandSender
-import com.uramnoil.kotlib.plugin.CommandExecuter
+import com.uramnoil.knukkitutil.plugin.CommandExecuter
 
 
 @Suppress("unused")
