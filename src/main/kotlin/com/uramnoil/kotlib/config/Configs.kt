@@ -1,4 +1,4 @@
-package com.uramnoil.knukkitutils.config
+package com.uramnoil.kotlib.config
 
 import cn.nukkit.utils.Config
 import kotlin.properties.ReadWriteProperty
@@ -34,7 +34,8 @@ class DoubleProperty(private val index: String, private val default: Double = 0.
 	}
 }
 
-class BooleanProperty(private val index: String, private val default: Boolean = false) : ReadWriteProperty<Config, Boolean> {
+class BooleanProperty(private val index: String, private val default: Boolean = false) :
+	ReadWriteProperty<Config, Boolean> {
 	override fun getValue(thisRef: Config, property: KProperty<*>): Boolean {
 		return thisRef.getBoolean(index, default)
 	}

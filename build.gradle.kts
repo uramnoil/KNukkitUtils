@@ -1,12 +1,27 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    kotlin("jvm") version "1.3.61"
+    kotlin("jvm") version "1.3.71"
     `maven-publish`
     id("com.github.johnrengelman.shadow") version "5.2.0"
     id("org.jetbrains.dokka") version "0.10.1"
+    id("com.jfrog.bintray") version ("1.8.4")
 }
 
 group = "com.uramnoil"
 version = "0.1.3"
+
+repositories {
+    jcenter()
+    maven {
+        url = uri("https://repo.nukkitx.com/main/")
+    }
+}
+
+dependencies {
+    compileOnly(kotlin("stdlib"))
+    compileOnly("cn.nukkit", "nukkit", "1.0-SNAPSHOT")
+}
 
 tasks.dokka {
     outputFormat = "html"
@@ -21,7 +36,7 @@ tasks.dokka {
 
 val sourcesJar by tasks.creating(Jar::class) {
     archiveClassifier.set("sources")
-    from(sourceSets.main.get().allSource)
+    from(sourceSets.getByName("main").allSource)
 }
 
 val dokkaJar by tasks.creating(Jar::class) {
@@ -41,37 +56,67 @@ tasks {
 }
 
 publishing {
-    val username = System.getenv("ARCHIVA_DEPLOY_USER_ID")
-    val password = System.getenv("ARCHIVA_DEPLOY_USER_PW")
-
-    repositories {
-        maven(url = "https://maven.uramnoil.com/repository/releases") {
-            credentials {
-                this.username = username
-                this.password = password
-            }
-        }
-    }
     publications {
         create<MavenPublication>("maven") {
             groupId = project.group.toString()
-            artifactId = "knukkitutils"
+            artifactId = "kotlib"
             from(components["kotlin"])
             artifact(sourcesJar)
             artifact(dokkaJar)
+            pom {
+                name.set("UramnOIL")
+                licenses {
+                    license {
+                        name.set("MIT License")
+                        url.set("http://www.opensource.org/licenses/mit-license.php")
+                        distribution.set("repo")
+                    }
+                }
+                developers {
+                    developer {
+                        name.set("UramnOIL")
+                        email.set("uramnoil@outlook.jp")
+                    }
+                }
+                scm {
+                    url.set("https://github.com/UramnOIL/Kotlib")
+                }
+            }
         }
     }
 }
 
-repositories {
-    jcenter()
-    maven {
-        url = uri("https://repo.nukkitx.com/main/")
+bintray {
+    user = project.findProperty("bintrayUser").toString()
+    key = project.findProperty("bintrayApiKey").toString()
+
+    publish = true
+
+    setPublications("maven")
+
+    with(pkg) {
+        repo = "nukkit"
+        name = "kotlib"
+        userOrg = user
+        publicDownloadNumbers = true
+        setLicenses("MIT")
+        vcsUrl = "https://github.com/UramnOIL/Kotlib"
+        with(version) {
+            name = project.version.toString()
+        }
     }
 }
-
 dependencies {
-    compileOnly(kotlin("stdlib"))
-    compileOnly("cn.nukkit", "nukkit", "1.0-SNAPSHOT")
+    implementation(kotlin("stdlib-jdk8"))
 }
-
+repositories {
+    mavenCentral()
+}
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions {
+    jvmTarget = "1.8"
+}
+val compileTestKotlin: KotlinCompile by tasks
+compileTestKotlin.kotlinOptions {
+    jvmTarget = "1.8"
+}
