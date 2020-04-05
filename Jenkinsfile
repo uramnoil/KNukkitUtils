@@ -9,7 +9,9 @@ pipeline {
 
         stage('Publish') {
             steps {
-                sh './gradlew --scan publish'
+                sh './gradlew clean'
+                sh './gradlew build'
+                sh './gradlew bintrayUpload'
             }
         }
     }
