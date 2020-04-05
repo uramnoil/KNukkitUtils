@@ -59,7 +59,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = project.group.toString()
-            artifactId = "kotlib"
+            artifactId = "knukkitutils"
             from(components["kotlin"])
             artifact(sourcesJar)
             artifact(dokkaJar)
@@ -79,7 +79,7 @@ publishing {
                     }
                 }
                 scm {
-                    url.set("https://github.com/UramnOIL/Kotlib")
+                    url.set("https://github.com/UramnOIL/KNukkitUtils")
                 }
             }
         }
@@ -96,11 +96,11 @@ bintray {
 
     with(pkg) {
         repo = "nukkit"
-        name = "kotlib"
+        name = "knukkitutils"
         userOrg = user
         publicDownloadNumbers = true
         setLicenses("MIT")
-        vcsUrl = "https://github.com/UramnOIL/Kotlib"
+        vcsUrl = "https://github.com/UramnOIL/KNukkitUtils"
         with(version) {
             name = project.version.toString()
         }
