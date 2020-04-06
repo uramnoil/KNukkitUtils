@@ -25,15 +25,15 @@ class ServiceDelegate<T>(clazz: Class<T>) : ReadOnlyProperty<Any?, T> {
 	override fun getValue(thisRef: Any?, property: KProperty<*>) = service
 }
 
-inline fun <reified T> ServiceManager.registerAs(provider: T, plugin: Plugin, priority: ServicePriority) =
+inline fun <reified T> ServiceManager.register(provider: T, plugin: Plugin, priority: ServicePriority) =
 	register(T::class.java, provider, plugin, priority)
 
 inline fun <reified T> ServiceManager.cancel(provider: T) = cancel(T::class.java, provider)
 
-inline fun <reified T> ServiceManager.getProviderAs() = this.getProvider(T::class.java)
+inline fun <reified T> ServiceManager.getProvider() = this.getProvider(T::class.java)
 
-inline fun <reified T> ServiceManager.getRegistrationsAs() = getRegistrations(T::class.java)
+inline fun <reified T> ServiceManager.getRegistrations() = getRegistrations(T::class.java)
 
-inline fun <reified T> ServiceManager.isProvidedForAs() = isProvidedFor(T::class.java)
+inline fun <reified T> ServiceManager.isProvidedFor() = isProvidedFor(T::class.java)
 
 inline fun <reified T> service() = ServiceDelegate(T::class.java)
