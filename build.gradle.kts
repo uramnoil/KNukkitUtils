@@ -96,7 +96,7 @@ bintray {
 
     with(pkg) {
         repo = "nukkit"
-        name = "knukkitutils"
+        name = "KNukkitUtils"
         userOrg = user
         publicDownloadNumbers = true
         setLicenses("MIT")
