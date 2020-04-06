@@ -1,4 +1,4 @@
-package com.uramnoil.knukkitutil
+package com.uramnoil.knukkitutils
 
 import cn.nukkit.Player
 import cn.nukkit.command.CommandSender

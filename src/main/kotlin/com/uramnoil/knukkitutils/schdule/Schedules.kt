@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package com.uramnoil.knukkitutil.schdule
+package com.uramnoil.knukkitutils.schdule
 
 import cn.nukkit.Server
 import cn.nukkit.plugin.Plugin

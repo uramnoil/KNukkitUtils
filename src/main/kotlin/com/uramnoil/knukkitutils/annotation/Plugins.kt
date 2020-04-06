@@ -1,4 +1,4 @@
-package com.uramnoil.knukkitutil.annotation
+package com.uramnoil.knukkitutils.annotation
 
 import javax.annotation.processing.AbstractProcessor
 import javax.annotation.processing.RoundEnvironment
